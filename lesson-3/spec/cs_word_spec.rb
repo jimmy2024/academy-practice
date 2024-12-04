@@ -3,6 +3,11 @@
 require_relative '../csword'
 
 RSpec.describe '#cs_word' do
+  def check(word, expected)
+    allow($stdin).to receive(:gets).and_return(word)
+    expect { cs_word }.to output("#{expected}\n").to_stdout
+  end
+
   it 'no cs ending' do
     tc = { "word" => "hello", "expect" => "hello".reverse }
     check(tc["word"], tc["expect"])
@@ -21,7 +26,3 @@ RSpec.describe '#cs_word' do
   end
 end
 
-def check(word, expected)
-  allow($stdin).to receive(:gets).and_return(word)
-  expect { cs_word }.to output("#{expected}\n").to_stdout
-end
