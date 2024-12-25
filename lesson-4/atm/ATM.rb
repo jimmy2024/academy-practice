@@ -1,11 +1,11 @@
 # frozen_string_literal: true
-STARTING_BALANCE = 100
+STARTING_BALANCE = 100.0
 BALANCE_FILE_PATH = "#{__dir__}/balance.txt"
 
 def main
   show_controls
   current_balance = read_balance
-  while (command = gets) do
+  while (command = gets)
     break if command == nil
     command = command.chomp.upcase
     case command
@@ -28,19 +28,19 @@ end
 
 def deposit(current_balance)
   while (amount = gets)
-    amount = amount.chomp.to_i
+    amount = amount.chomp.to_f
     if amount < 0
       puts 'Amount should be > 0'
     else
       break
     end
   end
-  (amount != nil) ? current_balance + amount : current_balance
+  (!amount.nil?) ? current_balance + amount : current_balance
 end
 
 def withdraw(current_balance)
   while (amount = gets)
-    amount = amount.chomp.to_i
+    amount = amount.chomp.to_f
     if amount < 0
       puts 'Amount should be > 0'
     elsif amount > current_balance
@@ -49,7 +49,7 @@ def withdraw(current_balance)
       break
     end
   end
-  (amount != nil) ? current_balance - amount : current_balance
+  (!amount.nil?) ? current_balance - amount : current_balance
 end
 
 def show_balance(current_balance)
@@ -57,12 +57,12 @@ def show_balance(current_balance)
 end
 
 def write_balance(current_balance)
-  File.open(BALANCE_FILE_PATH, 'w') { |f| f.write current_balance }
+  File.write(BALANCE_FILE_PATH, current_balance)
 end
 
 def read_balance
   return STARTING_BALANCE unless File.exist? BALANCE_FILE_PATH
-  File.open(BALANCE_FILE_PATH) { |f| return  f.readline.to_i }
+  File.open(BALANCE_FILE_PATH) { |f| return f.readline.to_f }
 end
 
 def show_controls
