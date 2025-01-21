@@ -1,0 +1,9 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @lab_report %>
+
+<div style="display: flex; flex-direction: row; column-gap: 30px">
+  <%= button_to "Назад", lab_reports_path, method: :get %>
+  <%= button_to "Редактировать", edit_lab_report_path, method: :get %>
+  <%= button_to "Удалить", @lab_report, method: :delete, style: "background-color:red" %>
+</div>
