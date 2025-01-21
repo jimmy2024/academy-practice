@@ -1,0 +1,26 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Lab reports" %>
+
+<h1>Лабораторные</h1>
+
+<div id="lab_reports">
+  <table>
+    <tr>
+      <th>Имя</th>
+      <th>Название</th>
+      <th>Описание</th>
+      <th>Оценка</th>
+    </tr>
+    <% @lab_reports.each do |lab_report| %>
+      <tr>
+        <td><%= lab_report.user.full_name %></td>
+        <td><%= link_to lab_report.title, lab_report %></td>
+        <td><%= lab_report.description %></td>
+        <td><%= lab_report.grade %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<%= button_to "Новая Лабораторная", new_lab_report_path, method: :get %>
